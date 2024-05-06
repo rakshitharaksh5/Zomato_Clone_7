@@ -7,13 +7,14 @@ const passport = require("passport");
 const cookieSession = require("cookie-session");
 
 const PORT = 5500;
-const HOSTNAME = "localhost";
+//const HOSTNAME = "localhost";
 const paymentRoute = require("./Controller/payment");
 const authRoute = require("./Controller/auth");
 const passportSetup = require("./Controller/passport");
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    //origin: 'http://localhost:3000',
+    origin: process.env.REACT_URL,
     credentials: true,
     optionSuccessStatus: 200
 }
@@ -36,15 +37,17 @@ app.use('/auth', authRoute);
 
 
 // DB
-const MongoAtlas = "mongodb+srv://admin:g9EGYylIV4IE1jcD@zomato0.salxpjp.mongodb.net/Zomato-11?retryWrites=true&w=majority&appName=Zomato0";
+//const MongoAtlas = "mongodb+srv://admin:g9EGYylIV4IE1jcD@zomato0.salxpjp.mongodb.net/Zomato-11?retryWrites=true&w=majority&appName=Zomato0";
+
+const MongoAtlas = process.env.MONGO_URL
 
 mongoose.connect(MongoAtlas, {
     // useNewUrlParser: true,
     // useUnifiedTopology: true
 })
 .then(res => {
-    app.listen(PORT, HOSTNAME, () => {
-        console.log(`Server is running at ${HOSTNAME}: ${PORT}`)
+    app.listen(PORT, () => {
+        console.log(`Server is running at ${PORT}`)
     });
 })
 .catch(err => console.log(err));
