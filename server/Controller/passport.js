@@ -9,7 +9,8 @@ passport.use(new GoogleStrategy({
     clientID:    CLIENT_ID,
     clientSecret: CLIENT_SECRET,
     //callbackURL: "http://localhost:5500/auth/google/callback",
-    callbackURL: "https://zomato-clone-7.onrender.com//auth/google/callback",
+    callbackURL: "https://zomato-clone-7.onrender.com/auth/google/callback",
+    //callbackURL: `${BASE_URL}/auth/google/callback`,
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {
