@@ -15,8 +15,10 @@ const passportSetup = require("./Controller/passport");
 const corsOptions = {
     //origin: 'http://localhost:3000',
     origin: process.env.REACT_URL,
+    methods: "GET,POST,PUT,DELETE, PATCH",
     credentials: true,
-    optionSuccessStatus: 200
+    optionSuccessStatus: 200,
+    allowedHeaders: "X-Requested-With,content-type, x-token, Access-Control-Allow-Credentials"
 }
 
 
@@ -31,6 +33,7 @@ app.use(express.json());    //a body parser required to post a data
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors(corsOptions));
+app.options('*', cors());
 app.use('/', route);
 app.use('/api/payment/', paymentRoute);     //Razorpay Payment Gateway
 app.use('/auth', authRoute);

@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import '../Style/detailsPage.css';
-
+const BASE_URL = window.env.REACT_APP_BASE_URL;
 
 const customStyles = {
     overlay:{
@@ -42,7 +42,8 @@ class Details extends React.Component{
         //console.log(restaurant);
 
         axios({
-            url: `http://localhost:5500/restaurant/${restaurant}`,
+            //url: `http://localhost:5500/restaurant/${restaurant}`,
+            url: `${BASE_URL}/restaurant/${restaurant}`,
             method: 'GET',
             headers: { 'Content-Type': 'application/JSON'}
         })
@@ -58,7 +59,8 @@ class Details extends React.Component{
 
         if(state === "menuModal" && value === true ){
             axios({
-                url: `http://localhost:5500/menu/${restId}`,
+                //url: `http://localhost:5500/menu/${restId}`,
+                url: `${BASE_URL}/menu/${restId}`,
                 method: 'GET',
                 headers: { 'Content-Type': 'application/JSON'}
             })
@@ -101,7 +103,8 @@ class Details extends React.Component{
 
             handler: async(response) => {
                 try{
-                    const verifyLink =" http://localhost:5500/api/payment/verify";
+                    //const verifyLink =" http://localhost:5500/api/payment/verify";
+                    const verifyLink = `${BASE_URL}/api/payment/verify`;
                     const { data } = await axios.post(verifyLink, response);
 
                 } catch (error){
@@ -116,7 +119,8 @@ class Details extends React.Component{
         const { subtotal } = this.state;
 
         try{
-            const orderLink = "http://localhost:5500/api/payment/orders";
+            //const orderLink = "http://localhost:5500/api/payment/orders";
+            const orderLink = `${BASE_URL}/api/payment/orders`;
             const { data } = await axios.post(orderLink, { amount: subtotal });
 
             this.initPayment(data.data);

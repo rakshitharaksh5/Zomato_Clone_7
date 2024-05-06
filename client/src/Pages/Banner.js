@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import navHook from "./nav";
-
+const BASE_URL = window.env.REACT_APP_BASE_URL;
 
 class Banner extends React.Component{
     constructor(){
@@ -9,7 +9,7 @@ class Banner extends React.Component{
         this.state ={
             restaurants: [],
             inputText: undefined,
-            suggestion: []
+            suggestion: [],
         }
     }
 
@@ -18,9 +18,10 @@ class Banner extends React.Component{
         const location = e.target.value;
 
         axios({
-            url: `http://localhost:5500/rest/${location}`,
+            //url: `http://localhost:5500/rest/${location}`,
+            url: `${BASE_URL}/rest/${location}`,
             method: 'GET',
-            headers: { 'Content-Type': 'application/JSON'}
+            headers: { 'Content-Type': 'application/JSON', "Access-Control-Allow-Credentials": true}
         })
         .then( res => {
             this.setState({ restaurants: res.data.restaurant})

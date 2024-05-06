@@ -8,7 +8,8 @@ const CLIENT_SECRET = "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";
 passport.use(new GoogleStrategy({
     clientID:    CLIENT_ID,
     clientSecret: CLIENT_SECRET,
-    callbackURL: "http://localhost:5500/auth/google/callback",
+    //callbackURL: "http://localhost:5500/auth/google/callback",
+    callbackURL: "https://zomato-clone-7.onrender.com//auth/google/callback",
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {
