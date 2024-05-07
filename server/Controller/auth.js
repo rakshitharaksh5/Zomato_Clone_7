@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const passport = require("passport");
 
-const CLIENT_URL = 'http://localhost:3000';
-//const CLIENT_URL = 'https://zomato-clone-7-1.onrender.com';
+//const CLIENT_URL = 'http://localhost:3000';
+const CLIENT_URL = 'https://zomato-clone-7-1.onrender.com';
 
 /*
     Login
@@ -30,7 +30,7 @@ router.get("/login/failure", (req, res) => {
 
 router.get("/logout", (req, res) => {
     req.logout();
-    res.redirect('http://localhost:3000');
+    res.redirect('https://zomato-clone-7-1.onrender.com');
 });
 
 router.get("/google", 
