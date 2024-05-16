@@ -44,5 +44,5 @@
   },
   "react-dotenv": {
     "whitelist": ["REACT_APP_BASE_URL"]
-}
+  }
 }
